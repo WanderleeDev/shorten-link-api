@@ -45,6 +45,8 @@ export class UserController {
   }
 
   async patchUser(req: Request, res: Response) {
+    console.log(req.body);
+
     const user = await this.patchUserUseCase.execute(
       req.params["id"],
       req.body

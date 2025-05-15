@@ -19,15 +19,14 @@ export async function bootstrap() {
     })
   );
   app.use(bodyParser.json());
-  app.use(morgan("dev"));
   app.use(errorHandler);
+  app.use(morgan("dev"));
+
+  app.get(`${basePath}/health_check`, (_req, res) => {
+    res.status(200).json({ message: "Server is running" });
+  });
 
   app.use(`${basePath}/user`, userRouter);
-  app.get(`${basePath}/health_check`, (_req, res) => {
-    res.status(200).json({
-      message: "Server is running",
-    });
-  });
 
   app.listen(config.SERVER.PORT, () => {
     console.log(`Server is running on http://localhost:${config.SERVER.PORT}`);

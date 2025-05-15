@@ -10,7 +10,8 @@ import {
   hashedPasswordField,
   updatedAtField,
 } from "./common.validator";
-import { refinePasswordValidation } from "./refinePasswordValidation";
+import { passwordMatchValidation } from "./passwordMatch.validator";
+import { validateNonEmptyObject } from "./NonEmptyObject.validator";
 
 export const userBaseSchema = z.object({
   id: idField,
@@ -24,7 +25,7 @@ export const userBaseSchema = z.object({
   updatedAt: updatedAtField,
 });
 
-export const userCreateSchema = refinePasswordValidation(
+export const userCreateSchema = passwordMatchValidation(
   z.object({
     name: nameField,
     email: emailField,
@@ -33,7 +34,7 @@ export const userCreateSchema = refinePasswordValidation(
   })
 );
 
-export const userUpdateSchema = refinePasswordValidation(
+export const userUpdateSchema = passwordMatchValidation(
   z.object({
     name: nameField.optional(),
     email: emailField.optional(),
@@ -43,10 +44,12 @@ export const userUpdateSchema = refinePasswordValidation(
   })
 );
 
-export const userPatchSchema = z.object({
-  name: nameField.optional(),
-  email: emailField.optional(),
-});
+export const userPatchSchema = validateNonEmptyObject(
+  z.object({
+    name: nameField.optional(),
+    email: emailField.optional(),
+  })
+);
 
 export const useResponserDbSchema = z.object({
   id: idField,
@@ -63,7 +66,7 @@ export const userResponseSchema = z.object({
   email: emailField,
 });
 
-export const passwordUpdateSchema = refinePasswordValidation(
+export const passwordUpdateSchema = passwordMatchValidation(
   z.object({
     previousPassword: previousPasswordField,
     password: passwordField,

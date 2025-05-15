@@ -5,7 +5,7 @@ import { UserController } from "../controllers/UserController";
 import { validateBody } from "../../../../infrastructure/middleware/zod.middleware";
 import {
   userCreateSchema,
-  // userPatchSchema,
+  userPatchSchema,
   userUpdateSchema,
 } from "../validators";
 import { PasswordEncryptService } from "../../../auth/application/services/PasswordEncrypt.service";
@@ -48,7 +48,11 @@ userRouter.put(
   validateBody(userUpdateSchema),
   userController.updateUser.bind(userController)
 );
-// userRouter.patch('/:id',validateBody(userPatchSchema), userController.)
+userRouter.patch(
+  "/:id",
+  validateBody(userPatchSchema),
+  userController.patchUser.bind(userController)
+);
 userRouter.delete("/:id", userController.deleteUser.bind(userController));
 
 export default userRouter;
