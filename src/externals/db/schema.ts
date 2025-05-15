@@ -8,3 +8,7 @@ export const usersTable = mysqlTable("users", {
   createdAt: timestamp("created_at").defaultNow().notNull(),
   updatedAt: timestamp("updated_at").defaultNow().onUpdateNow().notNull(),
 });
+
+export const linksTable = mysqlTable("links", {
+  id: varchar({ length: 36 }).notNull().unique(),
+});

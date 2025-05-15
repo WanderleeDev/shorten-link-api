@@ -1,6 +1,7 @@
 # 🔗 Link Shortener API
 
-![Clean Architecture Diagram](https://blog.cleancoder.com/uncle-bob/images/2012-08-13-the-clean-architecture/CleanArchitecture.jpg)....
+![Clean Architecture Diagram](https://blog.cleancoder.com/uncle-bob/images/2012-08-13-the-clean-architecture/CleanArchitecture.jpg)
+[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/WanderleeDev/shorten-link-api)
 
 A modern URL shortening API built with TypeScript, leveraging Bun for performance and simplicity. It adheres to Clean Architecture principles and employs Screaming Architecture to ensure scalability, maintainability, and clear domain separation.
 
