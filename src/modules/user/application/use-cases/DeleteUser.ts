@@ -1,5 +1,5 @@
 import { DeleteResourceError } from "../../../../application/errors/DeleteResourceError";
-import type { UserRepositoryImpl } from "../../adapters/repositories/UserRepositoryImpl";
+import type { UserRepositoryImpl } from "../../infrastructure/repositories/UserRepositoryImpl";
 
 export class DeleteUser {
   constructor(private readonly repository: UserRepositoryImpl) {}

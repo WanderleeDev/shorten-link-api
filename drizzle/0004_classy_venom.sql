@@ -1,0 +1,1 @@
+ALTER TABLE `links` ADD `title` varchar(50) NOT NULL;

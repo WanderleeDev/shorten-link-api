@@ -1,10 +1,11 @@
 import express from "express";
 import config from "../../config";
-import userRouter from "../../modules/user/adapters/routes/user.route";
+import userRouter from "../../modules/user/infrastructure/routes/user.route";
 import bodyParser from "body-parser";
 import cors from "cors";
 import morgan from "morgan";
 import { errorHandler } from "../../infrastructure/middleware/errorHandler.middleware";
+import { linkRouter } from "../../modules/link/infrastructure/routes/link.router";
 
 export async function bootstrap() {
   const app = express();
@@ -27,6 +28,7 @@ export async function bootstrap() {
   });
 
   app.use(`${basePath}/user`, userRouter);
+  app.use(`${basePath}/link`, linkRouter);
 
   app.listen(config.SERVER.PORT, () => {
     console.log(`Server is running on http://localhost:${config.SERVER.PORT}`);

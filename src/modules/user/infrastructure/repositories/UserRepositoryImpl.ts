@@ -42,14 +42,18 @@ export class UserRepositoryImpl implements UserRepository {
   }
 
   async create(entity: User): Promise<User | null> {
-    await db.insert(usersTable).values({
+    const result = await db.insert(usersTable).values({
       id: entity.id,
       name: entity.name,
       email: entity.email,
       hashedPassword: entity.hashedPassword,
     });
 
-    return this.findById(entity.id);
+    if (result[0].affectedRows > 0) {
+      return this.findById(entity.id);
+    }
+
+    return null;
   }
 
   async update(id: string, entity: UserUpdateFormatDTO): Promise<User | null> {
@@ -67,7 +71,7 @@ export class UserRepositoryImpl implements UserRepository {
     return await this.findById(id);
   }
 
-  async patchUser(id: string, entity: UserPatchDTO): Promise<User | null> {
+  async patch(id: string, entity: UserPatchDTO): Promise<User | null> {
     const result = await db
       .update(usersTable)
       .set({ ...entity })
@@ -81,6 +85,6 @@ export class UserRepositoryImpl implements UserRepository {
   async delete(id: string): Promise<boolean> {
     const [result] = await db.delete(usersTable).where(eq(usersTable.id, id));
 
-    return result.affectedRows > 0 ? true : false;
+    return result.affectedRows > 0;
   }
 }

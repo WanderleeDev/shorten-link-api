@@ -1,8 +1,8 @@
 import { CreateResourceError } from "../../../../application/errors/CreateResourceError";
-import { PasswordMismatchError } from "../../../../application/errors/PasswordMismatchError";
+import { PasswordMismatchError } from "../errors/PasswordMismatchError";
 import { ResourceAlreadyExistsError } from "../../../../application/errors/ResourceAlreadyExistsError";
 import type { PasswordEncrypt } from "../../../auth/domain/services/PasswordEncrypt.services";
-import type { UserRepositoryImpl } from "../../adapters/repositories/UserRepositoryImpl";
+import type { UserRepositoryImpl } from "../../infrastructure/repositories/UserRepositoryImpl";
 import type { User } from "../../domain/entities/user.entity";
 import type { UserCreateDTO } from "../DTOs";
 
@@ -32,7 +32,7 @@ export class CreateUser {
       email: user.email,
       hashedPassword,
       createdAt: new Date(),
-      updatedAt: new Date(),
+      updatedAt: null,
     };
 
     const result = await this.repository.create(newUser);

@@ -1,9 +1,5 @@
 import { z } from "zod";
 
-const idField = z
-  .string()
-  .uuid()
-  .describe("The unique identifier for the user");
 const nameField = z
   .string()
   .min(3, "Name must be at least 3 characters long")
@@ -30,17 +26,12 @@ const previousPasswordField = z
     /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d@$!%*?&]{8,50}$/,
     "Password must contain at least one letter and one number"
   );
-const createdAtField = z.date();
-const updatedAtField = z.date();
 
 export {
-  idField,
   nameField,
   emailField,
   passwordField,
   confirmPasswordField,
   previousPasswordField,
   hashedPasswordField,
-  createdAtField,
-  updatedAtField,
 };

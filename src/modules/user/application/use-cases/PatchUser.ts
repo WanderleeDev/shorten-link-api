@@ -13,7 +13,7 @@ export class PatchUser {
       throw new NotFoundResourceError(`User with ID ${id} not found`);
     }
 
-    const userPatched = await this.repository.patchUser(id, user);
+    const userPatched = await this.repository.patch(id, user);
 
     if (!userPatched) {
       throw new UpdateResourceError("Failed to update the user");

@@ -1,0 +1,1 @@
+ALTER TABLE `links` MODIFY COLUMN `user_id` varchar(36);

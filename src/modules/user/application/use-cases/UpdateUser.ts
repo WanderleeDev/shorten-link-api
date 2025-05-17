@@ -1,8 +1,8 @@
 import { NotFoundResourceError } from "../../../../application/errors/NotFoundResourceError";
-import { PasswordMismatchError } from "../../../../application/errors/PasswordMismatchError";
+import { PasswordMismatchError } from "../errors/PasswordMismatchError";
 import { UpdateResourceError } from "../../../../application/errors/UpdateResourceError";
 import type { PasswordEncrypt } from "../../../auth/domain/services/PasswordEncrypt.services";
-import type { UserRepositoryImpl } from "../../adapters/repositories/UserRepositoryImpl";
+import type { UserRepositoryImpl } from "../../infrastructure/repositories/UserRepositoryImpl";
 import type { User } from "../../domain/entities/user.entity";
 import type { UserUpdateDTO } from "../DTOs";
 

@@ -1,6 +1,6 @@
 import bcrypt from "bcryptjs";
 import type { PasswordEncrypt } from "../../domain/services/PasswordEncrypt.services";
-import { PasswordMismatchError } from "../../../../application/errors/PasswordMismatchError";
+import { PasswordMismatchError } from "../../../user/application/errors/PasswordMismatchError";
 
 export class PasswordEncryptService implements PasswordEncrypt {
   #SALTS = 10;

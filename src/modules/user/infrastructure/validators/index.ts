@@ -1,29 +1,20 @@
 import { z } from "zod";
 import {
-  idField,
   confirmPasswordField,
-  createdAtField,
   emailField,
   nameField,
   passwordField,
   previousPasswordField,
   hashedPasswordField,
-  updatedAtField,
 } from "./common.validator";
-import { passwordMatchValidation } from "./passwordMatch.validator";
-import { validateNonEmptyObject } from "./NonEmptyObject.validator";
 
-export const userBaseSchema = z.object({
-  id: idField,
-  name: nameField,
-  email: emailField,
-  hashedPassword: hashedPasswordField,
-  password: passwordField,
-  confirmPassword: confirmPasswordField,
-  previousPassword: previousPasswordField,
-  createdAt: createdAtField,
-  updatedAt: updatedAtField,
-});
+import { passwordMatchValidation } from "./passwordMatch.validator";
+import { nonEmptyObject } from "../../../../infrastructure/validators/NonEmptyObject.validator";
+import {
+  idField,
+  createdAtField,
+  updatedAtField,
+} from "../../../../infrastructure/validators/common.validators";
 
 export const userCreateSchema = passwordMatchValidation(
   z.object({
@@ -44,7 +35,7 @@ export const userUpdateSchema = passwordMatchValidation(
   })
 );
 
-export const userPatchSchema = validateNonEmptyObject(
+export const userPatchSchema = nonEmptyObject(
   z.object({
     name: nameField.optional(),
     email: emailField.optional(),

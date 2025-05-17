@@ -4,7 +4,7 @@ export interface UserDTO {
   email: string;
   hashedPassword: string;
   createdAt: Date;
-  updatedAt: Date;
+  updatedAt: Date | null;
 }
 
 export interface PasswordUpdateDTO {
